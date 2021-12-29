@@ -36,6 +36,7 @@ enum {
   ID_LEVEL_RETURN = 1,
   ID_LEVEL_POSITION,
   ID_LEVEL_COMMAND,
+  ID_LEVEL_BLTOUCH,
   ID_LEVEL_ZOFFSET
 };
 
@@ -58,6 +59,13 @@ static void event_handler(lv_obj_t *obj, lv_event_t event) {
         lv_draw_auto_level_offset_settings();
         break;
     #endif
+	#if ENABLED(BLTOUCH)
+      case ID_LEVEL_BLTOUCH:
+        lv_clear_level_settings();
+        bltouch_do_init();
+        lv_draw_bltouch_settings();
+        break;
+    #endif
   }
 }
 
@@ -67,6 +75,9 @@ void lv_draw_level_settings() {
   lv_screen_menu_item(scr, machine_menu.LevelingAutoCommandConf, PARA_UI_POS_X, PARA_UI_POS_Y * 2, event_handler, ID_LEVEL_COMMAND, 1);
   #if HAS_BED_PROBE
     lv_screen_menu_item(scr, machine_menu.LevelingAutoZoffsetConf, PARA_UI_POS_X, PARA_UI_POS_Y * 3, event_handler, ID_LEVEL_ZOFFSET, 2);
+  #endif
+  #if ENABLED(BLTOUCH)
+    lv_screen_menu_item(scr, machine_menu.BLTouchLevelingConf, PARA_UI_POS_X, PARA_UI_POS_Y * 4, event_handler, ID_LEVEL_BLTOUCH, 3);
   #endif
   lv_big_button_create(scr, "F:/bmp_back70x40.bin", common_menu.text_back, PARA_UI_BACL_POS_X + 10, PARA_UI_BACL_POS_Y, event_handler, ID_LEVEL_RETURN, true);
 }
