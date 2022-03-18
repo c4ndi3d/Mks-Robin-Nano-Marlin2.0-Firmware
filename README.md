@@ -1,4 +1,5 @@
-# Questo firmware è basato sulla versione 2.0.8 di makerbase, basata a sua volta sulla versione 2.0.8 di Marlin.
+# Firmware per Flyingbear ghost 5 con sensore di livellamento e driver 2226 (o 2209) in modalitàù UART con sensorless homing attivo
+Questo firmware è basato sulla versione 2.0.8 di makerbase, basata a sua volta sulla versione 2.0.8 di Marlin.
 
 1. Come buildare (da VSC):
 - Aprire il plugin platformIO e selezionare il task `mks_robin_nano_v3_usb_flash_drive`, quindi eseguire il `Clean All` e infine il `Build`;
@@ -9,7 +10,7 @@
 - Al termine del flash riavviare nuovamente la stampante, aprire il menù, fare il reset dell'eeprom e infine memorizzare l'eeprom resettata;
 
 3. Come predisporre l'hardware:
-- Scollegare i connettori degli endstop;
+- Scollegare i connettori degli endstop dalla scheda madre e, almeno quello dell'asse `Y`, dal telaio;
 - Montare un connettore sui due fili della ventolina dell'hotend e collegare quest'ultima al connettore `Fan2` della scheda madre;
 - Impostare la modalità UART per i driver ponticellando, sotto ciascuno di essi, i due pin verdi corrispondendi a `M2`;
 - Impostare la modalità Sensorless homing ponticellando, dove è scritto `DIAG`, i pin degli assi `X`, `Y`, `Z-` ed `E1`;
